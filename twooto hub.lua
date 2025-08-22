@@ -19,7 +19,7 @@ local url = "https://discord.com/api/webhooks/1407368525915623424/-nbhxJFTv7UJUZ
 -- games ---
 if game.PlaceId == 2202352383 then -- spts classic
     -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/spts-classic-script-obf/refs/heads/main/Script.lua")
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/spts-classic-script-obf/refs/heads/main/spts%20classic%20script%20obf.lua")
     local chunk = loadstring(scriptCode)
 
     -- Create a custom environment that includes your variables
