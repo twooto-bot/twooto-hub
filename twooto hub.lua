@@ -12,6 +12,7 @@ local Window = OrionLib:MakeWindow({
 -- services --
 local MarketplaceService = game:GetService("MarketplaceService")
 local StarterGui = game:GetService("StarterGui")
+local VirtualUser = game:GetService("VirtualUser")
 
 -- discord variables --
 local discordInvite = "https://discord.gg/WYwXgHtdZW"
