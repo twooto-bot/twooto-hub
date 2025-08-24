@@ -1,7 +1,7 @@
 -- HUD variables --
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({
-    Name = "Twooto hub <3",
+    Name = "Twooto hub ❤️",
     HidePremium = false,
     SaveConfig = false,
     ConfigFolder = "OrionLib",
@@ -35,9 +35,25 @@ if game.PlaceId == 2202352383 then -- spts classic
     -- Run the script
     chunk()
 
-elseif game.PlaceId == 3823781113 then -- spts remastered
+elseif game.PlaceId == 3823781113 then -- Saber Simulator
     -- Load the remote code
     local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script-obf/refs/heads/main/Saber%20Simulator%20Script%20obf.lua")
+    local chunk = loadstring(scriptCode)
+
+    -- Create a custom environment that includes your variables
+    local env = getfenv()
+    env.Window = Window
+    env.OrionLib = OrionLib
+
+    -- Assign that environment to the chunk
+    setfenv(chunk, env)
+
+    -- Run the script
+    chunk()
+
+elseif game.PlaceId == 537413528 then 
+    -- Load the remote code
+    local scriptCode = game:HttpGet("")
     local chunk = loadstring(scriptCode)
 
     -- Create a custom environment that includes your variables
