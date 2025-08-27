@@ -56,9 +56,9 @@ elseif game.PlaceId == 3823781113 then -- Saber Simulator
     -- Run the script
     chunk()
 
-elseif game.PlaceId == 537413528 then 
+elseif game.PlaceId == 76220848070434 then 
     -- Load the remote code
-    local scriptCode = game:HttpGet("")
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts-obf/refs/heads/main/inf%20parts%20obf.lua")
     local chunk = loadstring(scriptCode)
 
     -- Create a custom environment that includes your variables
