@@ -9,16 +9,8 @@ local Window = Rayfield:CreateWindow({
    ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
-   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
-
-   DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
-
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "twooto hub"
-   },
+   DisableRayfieldPrompts = true,
+   DisableBuildWarnings = true, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    Discord = {
       Enabled = true, -- Prompt the user to join your Discord server if their executor supports it
@@ -26,16 +18,6 @@ local Window = Rayfield:CreateWindow({
       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
    },
 
-   KeySystem = false, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "Untitled",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
 })
 
 -- services --
@@ -96,8 +78,8 @@ elseif game.PlaceId == 537413528 then
     -- Run the script
     chunk()
 else
-    Rayfield:MakeNotification({
-        Name = "Error",
+    Rayfield:Notify({
+        Title = "Error",
         Content = "This script is not supported in this game.",
         Image = "rbxassetid://4483345998",
         Time = 5
@@ -105,26 +87,11 @@ else
 end
 
 -- info tab --
-local infotab = Window:MakeTab({
-    Name = "Info",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
+local infotab = Window:CreateTab("Info")
 
-infotab:AddLabel("Script made by twooto")
-infotab:AddLabel("Discord: " .. discordInvite)
-infotab:AddButton({
-    Name = "Copy Discord Invite",
-    Callback = function()
-        setclipboard(discordInvite)
-        StarterGui:SetCore("SendNotification", {
-            Title = "Discord Invite",
-            Text = "Invite copied! Paste it in your browser to join.",
-            Duration = 50
-        })
-    end
-})
-infotab:AddLabel("anti afk is automaticaly turned on")
+infotab:CreateLabel("Script made by twooto")
+infotab:CreateLabel("Discord: " .. discordInvite)
+infotab:CreateLabel("anti afk is automaticaly turned on")
 
 -- webhook log --
 local function sendembed(title, description, color)
@@ -154,6 +121,7 @@ local plr = game.Players.LocalPlayer
 local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
 sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name, 65280)
 
+
 -- discord invite -- 
 setclipboard(discordInvite)
 
@@ -169,6 +137,3 @@ plr.Idled:Connect(function()
     task.wait(1)
     VirtualUser:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
 end)
-
--- finishing script --
-OrionLib:Init()
