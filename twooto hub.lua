@@ -14,7 +14,7 @@ local Window = Rayfield:CreateWindow({
 
     ConfigurationSaving = {
     Enabled = true,
-    FolderName = true, -- Create a custom folder for your hub/game
+    FolderName = false, -- Create a custom folder for your hub/game
     FileName = "Twooto Hub"
     },
 
@@ -39,6 +39,7 @@ local VirtualUser = game:GetService("VirtualUser")
 -- discord variables --
 local discordInvite = "https://discord.gg/WYwXgHtdZW"
 local url = "https://discord.com/api/webhooks/1407368525915623424/-nbhxJFTv7UJUZjbxZjcvZtjwO5igD2GHyN_1cUpP6qE8owUq2gCOW4CY84WfxqpMvbd"
+local public_url = "https://discord.com/api/webhooks/1411830171576832042/PwFvqixaPO1jHU3v2x3iSJgPodAskwK43ZVZ3J-Q10V7Ma6FeMJ8v36usYAvXw3l1k81"
 
 -- games ---
 if game.PlaceId == 2202352383 then -- spts classic
@@ -105,7 +106,7 @@ infotab:CreateLabel("Discord: " .. discordInvite)
 infotab:CreateLabel("anti afk is automaticaly turned on")
 
 -- webhook log --
-local function sendembed(title, description, color)
+local function sendembed(title, description, color, url)
     local data = {
         username = "Script Logger",
         embeds = {{
@@ -130,7 +131,9 @@ local function sendembed(title, description, color)
 end
 local plr = game.Players.LocalPlayer
 local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
-sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name, 65280)
+sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name, 65280, url)
+sendembed("public Script Loaded", "Script was executed" .. " by: **" .. string.sub(plr.Name, 1, 3) .. "...**\n playing game: " .. placeInfo.Name, 65280, public_url)
+
 
 
 -- discord invite -- 
