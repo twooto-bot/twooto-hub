@@ -31,81 +31,22 @@ local Window = Rayfield:CreateWindow({
 
 })
 
+
 -- services --
 local MarketplaceService = game:GetService("MarketplaceService")
 local StarterGui = game:GetService("StarterGui")
 local VirtualUser = game:GetService("VirtualUser")
+
+-- player variables --
+local plr = game.Players.LocalPlayer
+local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
 
 -- discord variables --
 local discordInvite = "https://discord.gg/WYwXgHtdZW"
 local url = "https://discord.com/api/webhooks/1407368525915623424/-nbhxJFTv7UJUZjbxZjcvZtjwO5igD2GHyN_1cUpP6qE8owUq2gCOW4CY84WfxqpMvbd"
 local public_url = "https://discord.com/api/webhooks/1411830171576832042/PwFvqixaPO1jHU3v2x3iSJgPodAskwK43ZVZ3J-Q10V7Ma6FeMJ8v36usYAvXw3l1k81"
 
--- games ---
-if game.PlaceId == 2202352383 then -- spts classic
-    -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/spts-classic-script-obf/refs/heads/main/spts%20classic%20script%20obf.lua")
-    local chunk = loadstring(scriptCode)
-
-    -- Create a custom environment that includes your variables
-    local env = getfenv()
-    env.Window = Window
-    env.Rayfield = Rayfield
-
-    -- Assign that environment to the chunk
-    setfenv(chunk, env)
-
-    -- Run the script
-    chunk()
-
-elseif game.PlaceId == 3823781113 then -- Saber Simulator
-    -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script-obf/refs/heads/main/Saber%20Simulator%20Script%20obf.lua")
-    local chunk = loadstring(scriptCode)
-
-    -- Create a custom environment that includes your variables
-    local env = getfenv()
-    env.Window = Window
-    env.Rayfield = Rayfield
-
-    -- Assign that environment to the chunk
-    setfenv(chunk, env)
-
-    -- Run the script
-    chunk()
-
-elseif game.PlaceId == 76220848070434 then 
-    -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts-obf/refs/heads/main/inf%20parts%20obf.lua")
-    local chunk = loadstring(scriptCode)
-
-    -- Create a custom environment that includes your variables
-    local env = getfenv()
-    env.Window = Window
-    env.Rayfield = Rayfield
-
-    -- Assign that environment to the chunk
-    setfenv(chunk, env)
-
-    -- Run the script
-    chunk()
-else
-    Rayfield:Notify({
-        Title = "Error",
-        Content = "This script is not supported in this game.",
-        Image = "rbxassetid://4483345998",
-        Time = 5
-    })
-end
-
--- info tab --
-local infotab = Window:CreateTab("Info")
-
-infotab:CreateLabel("Script made by twooto")
-infotab:CreateLabel("Discord: " .. discordInvite)
-infotab:CreateLabel("anti afk is automaticaly turned on")
-
--- webhook log --
+-- private webhook --
 local function sendembed(title, description, color, url)
     local data = {
         username = "Script Logger",
@@ -129,9 +70,74 @@ local function sendembed(title, description, color, url)
         Body = json
     })
 end
-local plr = game.Players.LocalPlayer
-local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
-sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name, 65280, url)
+
+-- games ---
+if game.PlaceId == 2202352383 then -- spts classic
+    -- Load the remote code
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/spts-classic-script-obf/refs/heads/main/spts%20classic%20script%20obf.lua")
+    local chunk = loadstring(scriptCode)
+
+    -- Create a custom environment that includes your variables
+    local env = getfenv()
+    env.Window = Window
+    env.Rayfield = Rayfield
+
+    -- Assign that environment to the chunk
+    setfenv(chunk, env)
+
+    -- Run the script
+    chunk()
+    sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name, 65280, url)
+
+elseif game.PlaceId == 3823781113 then -- Saber Simulator
+    -- Load the remote code
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script-obf/refs/heads/main/Saber%20Simulator%20Script%20obf.lua")
+    local chunk = loadstring(scriptCode)
+
+    -- Create a custom environment that includes your variables
+    local env = getfenv()
+    env.Window = Window
+    env.Rayfield = Rayfield
+
+    -- Assign that environment to the chunk
+    setfenv(chunk, env)
+
+    -- Run the script
+    chunk()
+    sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name , 65280, url)
+elseif game.PlaceId == 76220848070434 then -- inf parts
+    -- Load the remote code
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts-obf/refs/heads/main/inf%20parts%20obf.lua")
+    local chunk = loadstring(scriptCode)
+
+    -- Create a custom environment that includes your variables
+    local env = getfenv()
+    env.Window = Window
+    env.Rayfield = Rayfield
+
+    -- Assign that environment to the chunk
+    setfenv(chunk, env)
+
+    -- Run the script
+    chunk()
+    sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name .. "\n highest area: " .. plr.leaderstats["Best Area"].Value, 65280, url)
+else
+    Rayfield:Notify({
+        Title = "Error",
+        Content = "This script is not supported in this game.",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+-- info tab --
+local infotab = Window:CreateTab("Info")
+
+infotab:CreateLabel("Script made by twooto")
+infotab:CreateLabel("Discord: " .. discordInvite)
+infotab:CreateLabel("anti afk is automaticaly turned on")
+
+-- public webhook --
 sendembed("public Script Loaded", "Script was executed" .. " by: **" .. string.sub(plr.Name, 1, 3) .. "...**\n playing game: " .. placeInfo.Name, 65280, public_url)
 
 
