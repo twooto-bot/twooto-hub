@@ -1,6 +1,9 @@
 -- HUD variables --
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+-- Key System -- 
+setclipboard("https://loot-link.com/s?hz5B6yEo")
+
 local Window = Rayfield:CreateWindow({
    Name = "Twooto hub ❤️",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -18,19 +21,17 @@ local Window = Rayfield:CreateWindow({
     FileName = "Twooto Hub"
     },
 
-    KeySystem = false, -- Set this to true to use our key system
+    KeySystem = true, -- Set this to true to use our key system
     KeySettings = {
-    Title = "twooto hub system",
+    Title = "twooto hub key system",
     Subtitle = "Key System",
-    Note = "compleet lootlabs to get key", -- Use this to tell the user how to get a key
+    Note = "Link to get key in clipboard, non support universal key: twooto",
     FileName = "twooto_hubKey", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-    SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+    SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
     GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-    Key = {"twooto"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+    Key = {"twooto", "twooto_is_best"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
-
 })
-
 
 -- services --
 local MarketplaceService = game:GetService("MarketplaceService")
