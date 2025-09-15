@@ -44,7 +44,7 @@ local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
 
 -- discord variables --
 local discordInvite = "https://discord.gg/WYwXgHtdZW"
-local url = "https://discord.com/api/webhooks/1407368525915623424/-nbhxJFTv7UJUZjbxZjcvZtjwO5igD2GHyN_1cUpP6qE8owUq2gCOW4CY84WfxqpMvbd"
+local url = "https://discord.com/api/webhooks/1417154206103765146/hjBmTpi5PD-ABUbdY3n4ggO9XwmL1TK9zPdgwOznS7bh82eixDThZPIVLSd_iWUDu3IE"
 local public_url = "https://discord.com/api/webhooks/1411830171576832042/PwFvqixaPO1jHU3v2x3iSJgPodAskwK43ZVZ3J-Q10V7Ma6FeMJ8v36usYAvXw3l1k81"
 
 -- private webhook --
