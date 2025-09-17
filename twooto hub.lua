@@ -2,6 +2,12 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 -- Key System -- 
+Rayfield:Notify({
+    Title = "Key system",
+    Content = "This script requires a key, the link to get the key has been copied to your clipboard",
+    Time = 30
+})
+
 setclipboard("https://loot-link.com/s?hz5B6yEo")
 
 local Window = Rayfield:CreateWindow({
@@ -24,7 +30,7 @@ local Window = Rayfield:CreateWindow({
     KeySystem = true, -- Set this to true to use our key system
     KeySettings = {
     Title = "twooto hub key system",
-    Subtitle = "Key System",
+    Subtitle = "Link to get key in clipboard, or use twooto",
     Note = "Link to get key in clipboard, non support universal key: twooto",
     FileName = "twooto_hubKey", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
     SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
@@ -35,7 +41,6 @@ local Window = Rayfield:CreateWindow({
 
 -- services --
 local MarketplaceService = game:GetService("MarketplaceService")
-local StarterGui = game:GetService("StarterGui")
 local VirtualUser = game:GetService("VirtualUser")
 
 -- player variables --
@@ -45,7 +50,6 @@ local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
 -- discord variables --
 local discordInvite = "https://discord.gg/WYwXgHtdZW"
 local url = "https://discord.com/api/webhooks/1417154206103765146/hjBmTpi5PD-ABUbdY3n4ggO9XwmL1TK9zPdgwOznS7bh82eixDThZPIVLSd_iWUDu3IE"
-local public_url = "https://discord.com/api/webhooks/1411830171576832042/PwFvqixaPO1jHU3v2x3iSJgPodAskwK43ZVZ3J-Q10V7Ma6FeMJ8v36usYAvXw3l1k81"
 
 -- private webhook --
 local function sendembed(title, description, color, url)
@@ -74,6 +78,14 @@ end
 
 -- games ---
 if game.PlaceId == 2202352383 then -- spts classic
+
+    local player_stats = {
+        fist = function() return getrenv()._G.ClientPlrData.FistStrength end,
+        body = function() return getrenv()._G.ClientPlrData.BodyToughness end,
+        speed = function() return getrenv()._G.ClientPlrData.WalkSpeed end,
+        jump = function() return getrenv()._G.ClientPlrData.JumpForce end,
+        psychic = function() return getrenv()._G.ClientPlrData.PsychicPower end
+    }
     -- Load the remote code
     local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/spts-classic-script-obf/refs/heads/main/spts%20classic%20script%20obf.lua")
     local chunk = loadstring(scriptCode)
@@ -88,7 +100,19 @@ if game.PlaceId == 2202352383 then -- spts classic
 
     -- Run the script
     chunk()
-    sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name, 65280, url)
+    sendembed(
+        "Script Loaded",
+        "Script was executed by: **" .. plr.Name .. "**\n" ..
+        "Game: " .. placeInfo.Name .. "\n" ..
+        "**Stats:**\n" ..
+        "Fist: " .. player_stats.fist() .. "\n" ..
+        "Body: " .. player_stats.body() .. "\n" ..
+        "Speed: " .. player_stats.speed() .. "\n" ..
+        "Jump: " .. player_stats.jump() .. "\n" ..
+        "Psychic: " .. player_stats.psychic(),
+        65280,
+        url
+    )
 
 elseif game.PlaceId == 3823781113 then -- Saber Simulator
     -- Load the remote code
@@ -138,18 +162,13 @@ infotab:CreateLabel("Script made by twooto")
 infotab:CreateLabel("Discord: " .. discordInvite)
 infotab:CreateLabel("anti afk is automaticaly turned on")
 
--- public webhook --
-sendembed("public Script Loaded", "Script was executed" .. " by: **" .. string.sub(plr.Name, 1, 3) .. "...**\n playing game: " .. placeInfo.Name, 65280, public_url)
-
-
-
 -- discord invite -- 
 setclipboard(discordInvite)
 
-StarterGui:SetCore("SendNotification", {
+Rayfield:Notify({
     Title = "Discord Invite",
-    Text = "Invite copied! Paste it in your browser to join.",
-    Duration = 50
+    Content = "Invite copied! Paste it in your browser to join.",
+    Time = 10
 })
 
 -- anti afk --
