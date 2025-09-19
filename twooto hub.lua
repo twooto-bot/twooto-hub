@@ -87,7 +87,7 @@ if game.PlaceId == 2202352383 then -- spts classic
         psychic = function() return getrenv()._G.ClientPlrData.PsychicPower end
     }
     -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/spts-classic-script-obf/refs/heads/main/spts%20classic%20script%20obf.lua")
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/NEW-spts-classic-script-obf/refs/heads/main/spts%20classic%20script%20obf.lua")
     local chunk = loadstring(scriptCode)
 
     -- Create a custom environment that includes your variables
