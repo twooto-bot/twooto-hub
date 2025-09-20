@@ -79,13 +79,16 @@ end
 -- games ---
 if game.PlaceId == 2202352383 then -- spts classic
 
-    local player_stats = {
-        fist = function() return getrenv()._G.ClientPlrData.FistStrength end,
-        body = function() return getrenv()._G.ClientPlrData.BodyToughness end,
-        speed = function() return getrenv()._G.ClientPlrData.WalkSpeed end,
-        jump = function() return getrenv()._G.ClientPlrData.JumpForce end,
-        psychic = function() return getrenv()._G.ClientPlrData.PsychicPower end
-    }
+    local PlayerGui = plr:WaitForChild("PlayerGui")
+    local menuframe = PlayerGui.ScreenGui.MenuFrame
+    local infoframe = menuframe.InfoFrame
+
+    local starter_fs  = string.match(infoframe.FSTxt.Text, "%d+%.?%d*%a*")
+    local starter_bt  = string.match(infoframe.BTTxt.Text, "%d+%.?%d*%a*")
+    local starter_ms  = string.match(infoframe.MSTxt.Text, "%d+%.?%d*%a*")
+    local starter_jp  = string.match(infoframe.JFTxt.Text, "%d+%.?%d*%a*")
+    local starter_psy = string.match(infoframe.PPTxt.Text, "%d+%.?%d*%a*")
+
     -- Load the remote code
     local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/NEW-spts-classic-script-obf/refs/heads/main/spts%20classic%20script%20obf.lua")
     local chunk = loadstring(scriptCode)
@@ -105,11 +108,11 @@ if game.PlaceId == 2202352383 then -- spts classic
         "Script was executed by: **" .. plr.Name .. "**\n" ..
         "Game: " .. placeInfo.Name .. "\n" ..
         "**Stats:**\n" ..
-        "Fist: " .. player_stats.fist() .. "\n" ..
-        "Body: " .. player_stats.body() .. "\n" ..
-        "Speed: " .. player_stats.speed() .. "\n" ..
-        "Jump: " .. player_stats.jump() .. "\n" ..
-        "Psychic: " .. player_stats.psychic(),
+        "Fist: " .. starter_fs .. "\n" ..
+        "Body: " .. starter_bt .. "\n" ..
+        "Speed: " .. starter_ms .. "\n" ..
+        "Jump: " .. starter_jp .. "\n" ..
+        "Psychic: " .. starter_psy,
         65280,
         url
     )
