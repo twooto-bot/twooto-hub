@@ -24,7 +24,7 @@ local Window = Rayfield:CreateWindow({
     ConfigurationSaving = {
     Enabled = true,
     FolderName = false, -- Create a custom folder for your hub/game
-    FileName = "Twooto Hub"
+    FileName = "Twooto Hub v2"
     },
 
     KeySystem = true, -- Set this to true to use our key system
