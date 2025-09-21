@@ -4,7 +4,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 -- Key System -- 
 Rayfield:Notify({
     Title = "Key system",
-    Content = "This script requires a key, the link to get the key has been copied to your clipboard",
+    Content = "Once the key has been entered it saves it forever, still want to support script go to INFO tab",
     Time = 30
 })
 
@@ -33,7 +33,7 @@ local Window = Rayfield:CreateWindow({
     Subtitle = "Link to get key in clipboard, or use twooto",
     Note = "Link to get key in clipboard, non support universal key: twooto",
     FileName = "twooto_hubKey", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-    SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+    SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
     GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
     Key = {"twooto", "twooto_is_best"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
@@ -162,16 +162,32 @@ end
 local infotab = Window:CreateTab("Info")
 
 infotab:CreateLabel("Script made by twooto")
-infotab:CreateLabel("Discord: " .. discordInvite)
 infotab:CreateLabel("anti afk is automaticaly turned on")
+infotab:CreateDivider()
+infotab:CreateButton({
+   Name = "Copy support link",
+   Callback = function()
+        setclipboard("https://loot-link.com/s?hz5B6yEo")
+        Rayfield:Notify({
+            Title = "Support link",
+            Content = "Support link copied! Paste it in your browser and do the ads",
+            Time = 10
+        })
+   end,
+})
 
--- discord invite -- 
-setclipboard(discordInvite)
-
-Rayfield:Notify({
-    Title = "Discord Invite",
-    Content = "Invite copied! Paste it in your browser to join.",
-    Time = 10
+infotab:CreateDivider()
+infotab:CreateLabel("Discord: " .. discordInvite)
+infotab:CreateButton({
+   Name = "Copy support link",
+   Callback = function()
+        setclipboard(discordInvite)
+        Rayfield:Notify({
+            Title = "Discord Invite",
+            Content = "Invite copied! Paste it in your browser to join.",
+            Time = 10
+        })
+   end,
 })
 
 -- anti afk --
