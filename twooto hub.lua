@@ -90,7 +90,7 @@ if game.PlaceId == 2202352383 then -- spts classic
     local starter_psy = string.match(infoframe.PPTxt.Text, "%d+%.?%d*%a*")
 
     -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/NEW-spts-classic-script-obf/refs/heads/main/spts%20classic%20script%20obf.lua")
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/NEW-spts-classic-script/refs/heads/main/spts%20classic%20recode.lua")
     local chunk = loadstring(scriptCode)
 
     -- Create a custom environment that includes your variables
@@ -119,7 +119,7 @@ if game.PlaceId == 2202352383 then -- spts classic
 
 elseif game.PlaceId == 3823781113 then -- Saber Simulator
     -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script-obf/refs/heads/main/Saber%20Simulator%20Script%20obf.lua")
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script/refs/heads/main/Saber%20Simulator%20script.lua")
     local chunk = loadstring(scriptCode)
 
     -- Create a custom environment that includes your variables
@@ -135,7 +135,7 @@ elseif game.PlaceId == 3823781113 then -- Saber Simulator
     sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name , 65280, url)
 elseif game.PlaceId == 76220848070434 then -- inf parts
     -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts-obf/refs/heads/main/inf%20parts%20obf.lua")
+    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts/refs/heads/main/inf%20parts.lua")
     local chunk = loadstring(scriptCode)
 
     -- Create a custom environment that includes your variables
@@ -164,6 +164,7 @@ local infotab = Window:CreateTab("Info")
 infotab:CreateLabel("Script made by twooto")
 infotab:CreateLabel("anti afk is automaticaly turned on")
 infotab:CreateDivider()
+infotab:CreateLabel("Support link: https://loot-link.com/s?hz5B6yEo")
 infotab:CreateButton({
    Name = "Copy support link",
    Callback = function()
