@@ -1,195 +1,34 @@
--- HUD variables --
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-
--- Key System -- 
-Rayfield:Notify({
-    Title = "Key system",
-    Content = "Once the key has been entered it saves it forever, still want to support script go to INFO tab",
-    Time = 30
-})
-
-setclipboard("https://loot-link.com/s?hz5B6yEo")
-
-local Window = Rayfield:CreateWindow({
-   Name = "Twooto hub ❤️",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Welcome to twooto hub!",
-   LoadingSubtitle = "by twooto",
-   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
-   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
-
-   DisableRayfieldPrompts = true,
-   DisableBuildWarnings = true, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
-
-    ConfigurationSaving = {
-    Enabled = true,
-    FolderName = false, -- Create a custom folder for your hub/game
-    FileName = "Twooto Hub v2"
-    },
-
-    KeySystem = true, -- Set this to true to use our key system
-    KeySettings = {
-    Title = "twooto hub key system",
-    Subtitle = "Link to get key in clipboard, or use twooto",
-    Note = "Link to get key in clipboard, non support universal key: twooto",
-    FileName = "twooto_hubKey", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-    SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-    GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-    Key = {"twooto", "twooto_is_best"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
-})
-
 -- services --
-local MarketplaceService = game:GetService("MarketplaceService")
 local VirtualUser = game:GetService("VirtualUser")
-
 -- player variables --
 local plr = game.Players.LocalPlayer
-local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
-
--- discord variables --
-local discordInvite = "https://discord.gg/WYwXgHtdZW"
-local url = "https://discord.com/api/webhooks/1417154206103765146/hjBmTpi5PD-ABUbdY3n4ggO9XwmL1TK9zPdgwOznS7bh82eixDThZPIVLSd_iWUDu3IE"
-
--- private webhook --
-local function sendembed(title, description, color, url)
-    local data = {
-        username = "Script Logger",
-        embeds = {{
-            title = title,
-            description = description,
-            footer = {
-                text = os.date("%Y-%m-%d %H:%M:%S"),
-            },
-            color = color
-        }}
-    }
-
-    local json = game:GetService("HttpService"):JSONEncode(data)
-
-    request = http_request or request or syn.request
-    request({
-        Url = url,
-        Method = "POST",
-        Headers = { ["Content-Type"] = "application/json" },
-        Body = json
-    })
-end
 
 -- games ---
 if game.PlaceId == 2202352383 then -- spts classic
-
-    local PlayerGui = plr:WaitForChild("PlayerGui")
-    local menuframe = PlayerGui.ScreenGui.MenuFrame
-    local infoframe = menuframe.InfoFrame
-
-    local starter_fs  = string.match(infoframe.FSTxt.Text, "%d+%.?%d*%a*")
-    local starter_bt  = string.match(infoframe.BTTxt.Text, "%d+%.?%d*%a*")
-    local starter_ms  = string.match(infoframe.MSTxt.Text, "%d+%.?%d*%a*")
-    local starter_jp  = string.match(infoframe.JFTxt.Text, "%d+%.?%d*%a*")
-    local starter_psy = string.match(infoframe.PPTxt.Text, "%d+%.?%d*%a*")
-
-    -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/NEW-spts-classic-script/refs/heads/main/spts%20classic%20recode.lua")
-    local chunk = loadstring(scriptCode)
-
-    -- Create a custom environment that includes your variables
-    local env = getfenv()
-    env.Window = Window
-    env.Rayfield = Rayfield
-
-    -- Assign that environment to the chunk
-    setfenv(chunk, env)
-
-    -- Run the script
-    chunk()
-    sendembed(
-        "Script Loaded",
-        "Script was executed by: **" .. plr.Name .. "**\n" ..
-        "Game: " .. placeInfo.Name .. "\n" ..
-        "**Stats:**\n" ..
-        "Fist: " .. starter_fs .. "\n" ..
-        "Body: " .. starter_bt .. "\n" ..
-        "Speed: " .. starter_ms .. "\n" ..
-        "Jump: " .. starter_jp .. "\n" ..
-        "Psychic: " .. starter_psy,
-        65280,
-        url
-    )
-
+    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/NEW-spts-classic-script/refs/heads/main/spts%20classic%20recode.lua")
 elseif game.PlaceId == 3823781113 then -- Saber Simulator
-    -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script/refs/heads/main/Saber%20Simulator%20script.lua")
-    local chunk = loadstring(scriptCode)
-
-    -- Create a custom environment that includes your variables
-    local env = getfenv()
-    env.Window = Window
-    env.Rayfield = Rayfield
-
-    -- Assign that environment to the chunk
-    setfenv(chunk, env)
-
-    -- Run the script
-    chunk()
-    sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name , 65280, url)
+    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script/refs/heads/main/Saber%20Simulator%20script.lua")
 elseif game.PlaceId == 76220848070434 then -- inf parts
-    -- Load the remote code
-    local scriptCode = game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts/refs/heads/main/inf%20parts.lua")
-    local chunk = loadstring(scriptCode)
-
-    -- Create a custom environment that includes your variables
-    local env = getfenv()
-    env.Window = Window
-    env.Rayfield = Rayfield
-
-    -- Assign that environment to the chunk
-    setfenv(chunk, env)
-
-    -- Run the script
-    chunk()
-    sendembed("Script Loaded", "Script was executed" .. " by: **" .. plr.Name .. "**\n playing game: " .. placeInfo.Name .. "\n highest area: " .. plr.leaderstats["Best Area"].Value, 65280, url)
+    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts/refs/heads/main/inf%20parts.lua")
 else
-    Rayfield:Notify({
-        Title = "Error",
-        Content = "This script is not supported in this game.",
-        Image = "rbxassetid://4483345998",
-        Time = 5
-    })
+    local player = game.Players.LocalPlayer
+    local gui = Instance.new("ScreenGui", player.PlayerGui)
+    local frame = Instance.new("Frame", gui)
+
+    frame.Size = UDim2.new(0, 200, 0, 50)
+    frame.Position = UDim2.new(0.5, -100, 0.1, 0)
+    frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+
+    local text = Instance.new("TextLabel", frame)
+    text.Size = UDim2.new(1, 0, 1, 0)
+    text.BackgroundTransparency = 1
+    text.TextColor3 = Color3.fromRGB(255, 255, 255)
+    text.Text = "Game not suported!"
+
+    task.wait(60)
+
+    gui:Destroy()
 end
-
--- info tab --
-local infotab = Window:CreateTab("Info")
-
-infotab:CreateLabel("Script made by twooto")
-infotab:CreateLabel("anti afk is automaticaly turned on")
-infotab:CreateDivider()
-infotab:CreateLabel("Support link: https://loot-link.com/s?hz5B6yEo")
-infotab:CreateButton({
-   Name = "Copy support link",
-   Callback = function()
-        setclipboard("https://loot-link.com/s?hz5B6yEo")
-        Rayfield:Notify({
-            Title = "Support link",
-            Content = "Support link copied! Paste it in your browser and do the ads",
-            Time = 10
-        })
-   end,
-})
-
-infotab:CreateDivider()
-infotab:CreateLabel("Discord: " .. discordInvite)
-infotab:CreateButton({
-   Name = "Copy support link",
-   Callback = function()
-        setclipboard(discordInvite)
-        Rayfield:Notify({
-            Title = "Discord Invite",
-            Content = "Invite copied! Paste it in your browser to join.",
-            Time = 10
-        })
-   end,
-})
 
 -- anti afk --
 plr.Idled:Connect(function()
@@ -197,7 +36,3 @@ plr.Idled:Connect(function()
     task.wait(1)
     VirtualUser:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
 end)
-
-
--- load config --
-Rayfield:LoadConfiguration()
