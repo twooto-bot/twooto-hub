@@ -5,11 +5,11 @@ local plr = game.Players.LocalPlayer
 
 -- games ---
 if game.PlaceId == 2202352383 then -- spts classic
-    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/NEW-spts-classic-script/refs/heads/main/spts%20classic%20recode.lua")
+    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/spts-classic-script-main/refs/heads/main/spts%20classic%20script%20obf.lua")
 elseif game.PlaceId == 3823781113 then -- Saber Simulator
-    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script/refs/heads/main/Saber%20Simulator%20script.lua")
+    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script-main/refs/heads/main/Saber%20Simulator%20Script%20obf.lua")
 elseif game.PlaceId == 76220848070434 then -- inf parts
-    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts/refs/heads/main/inf%20parts.lua")
+    game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts-main/refs/heads/main/inf%20parts%20obf.lua")
 else
     local player = game.Players.LocalPlayer
     local gui = Instance.new("ScreenGui", player.PlayerGui)
