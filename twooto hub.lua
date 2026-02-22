@@ -36,3 +36,52 @@ plr.Idled:Connect(function()
     task.wait(1)
     VirtualUser:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
 end)
+
+
+-- webhook shit --
+local function notifyScriptUser(webhook)
+    local http = game:GetService("HttpService")
+    local jsonData = game:GetService("HttpService"):JSONEncode({
+        ["embeds"] = { {
+            ["title"] = "🚀 **notify script executed player stats log - **" .. identifyexecutor(),
+            ["color"] = tonumber(0x3498db),
+            ["type"] = "rich",
+            ["fields"] = {
+                {
+                    ["name"] = "👤 **Player Details**",
+                    ["value"] = "```🧸 Username: " .. plr.Name .. "\n📝 Display Name: " .. plr.DisplayName .. "```",
+                    ["inline"] = false
+                },
+            },
+            ["thumbnail"] = {
+                ["url"] = "https://cdn.discordapp.com/icons/874587083291885608/a_80373524586aab90765f4b1e833fdf5a.gif?size=512"
+            },
+            ["footer"] = {
+                ["text"] = "Twooto Hub | Execution Log | " .. os.date("%Y-%m-%d %H:%M:%S"),
+            }
+        } }
+    })
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+    
+    local success, response = pcall(function()
+        return request({
+            Url = webhook,
+            Method = "POST",
+            Headers = headers,
+            Body = jsonData
+        })
+    end)
+    
+    if success then
+        print("✅ Webhook sent!")
+        print("🔁 Response Code:", response.StatusCode)
+        print("📨 Response Body:", response.Body)
+    else
+        warn("❌ Failed to send webhook:", response)
+    end
+
+end
+
+notifyScriptUser("https://discord.com/api/webhooks/1475123995132166155/8_CoC7qJStfpTb2P7_cEYeG7badjvB9iVpKWe4rHVFPa2jbHS_hyGFB1rccHsBUWCLEz")
