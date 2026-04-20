@@ -43,25 +43,31 @@ end)
 -- webhook shit --
 local function notifyScriptUser(webhook)
     local http = game:GetService("HttpService")
-    local jsonData = game:GetService("HttpService"):JSONEncode({
-        ["embeds"] = { {
-            ["title"] = "🚀 **notify script executed player stats log - **" .. identifyexecutor(),
+    local MarketplaceService = game:GetService("MarketplaceService")
+    local Players = game:GetService("Players")
+    local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
+    local gameName = placeInfo.Name
+    local jsonData = HttpService:JSONEncode({
+        ["embeds"] = {{
+            ["title"] = "Player session log",
             ["color"] = tonumber(0x3498db),
             ["type"] = "rich",
             ["fields"] = {
                 {
-                    ["name"] = "👤 **Player Details**",
-                    ["value"] = "```🧸 Username: " .. plr.Name .. "\n📝 Display Name: " .. plr.DisplayName .. "```",
+                    ["name"] = "Player Details",
+                    ["value"] = "```Username: " .. plr.Name .. "\nDisplay Name: " .. plr.DisplayName .. "```",
                     ["inline"] = false
                 },
-            },
-            ["thumbnail"] = {
-                ["url"] = "https://cdn.discordapp.com/icons/874587083291885608/a_80373524586aab90765f4b1e833fdf5a.gif?size=512"
+                {
+                    ["name"] = "Game Details",
+                    ["value"] = "```Game Name: " .. gameName .. "\nPlaceId: " .. tostring(game.PlaceId) .. "\nJobId: " .. tostring(game.JobId) .. "```",
+                    ["inline"] = false
+                }
             },
             ["footer"] = {
-                ["text"] = "Twooto Hub | Execution Log | " .. os.date("%Y-%m-%d %H:%M:%S"),
+                ["text"] = os.date("%Y-%m-%d %H:%M:%S"),
             }
-        } }
+        }}
     })
     local headers = {
         ["Content-Type"] = "application/json"
