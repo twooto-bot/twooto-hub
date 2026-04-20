@@ -47,9 +47,9 @@ local function notifyScriptUser(webhook)
     local Players = game:GetService("Players")
     local placeInfo = MarketplaceService:GetProductInfo(game.PlaceId)
     local gameName = placeInfo.Name
-    local jsonData = HttpService:JSONEncode({
+    local jsonData = http:JSONEncode({
         ["embeds"] = {{
-            ["title"] = "Player session log",
+            ["title"] = "🚀 **notify script executed player stats log - **" .. identifyexecutor(),
             ["color"] = tonumber(0x3498db),
             ["type"] = "rich",
             ["fields"] = {
@@ -65,7 +65,7 @@ local function notifyScriptUser(webhook)
                 }
             },
             ["footer"] = {
-                ["text"] = os.date("%Y-%m-%d %H:%M:%S"),
+                ["text"] = "Twooto Hub | Execution Log | " .. os.date("%Y-%m-%d %H:%M:%S"),
             }
         }}
     })
