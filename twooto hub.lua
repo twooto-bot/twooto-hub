@@ -10,6 +10,8 @@ elseif game.PlaceId == 3823781113 then -- Saber Simulator
     loadstring(game:HttpGet("https://raw.githubusercontent.com/twooto-bot/Saber-Simulator-script/refs/heads/main/Saber%20Simulator%20script.lua"))()
 elseif game.PlaceId == 76220848070434 then -- inf parts
     loadstring(game:HttpGet("https://raw.githubusercontent.com/twooto-bot/inf-parts-script/refs/heads/main/inf%20parts.lua"))()
+elseif game.PlaceId == 140699359360137 then -- SPTS: Reimagined
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/twooto-bot/spts-Reimagined/refs/heads/main/script.lua"))()
 else
     local player = game.Players.LocalPlayer
     local gui = Instance.new("ScreenGui", player.PlayerGui)
@@ -84,4 +86,4 @@ local function notifyScriptUser(webhook)
 
 end
 
-notifyScriptUser("https://discord.com/api/webhooks/1475123995132166155/8_CoC7qJStfpTb2P7_cEYeG7badjvB9iVpKWe4rHVFPa2jbHS_hyGFB1rccHsBUWCLEz")
+notifyScriptUser("https://discord.com/api/webhooks/1475123996969406616/MLJuM3U2AEAHj4FeUJbO2Ks3K5ewE7vi1sLM_LcssCov5ge6YwX3Ox0-ZFb4WKpIDkrI") -- please dont delete this is my motivation to continue making scripts for you guys 
